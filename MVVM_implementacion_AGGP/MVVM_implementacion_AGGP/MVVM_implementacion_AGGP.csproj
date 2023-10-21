@@ -18,6 +18,11 @@
 
   <ItemGroup>
     <Folder Include="Modelo\" />
-    <Folder Include="Vista\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Vistas\pagina1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
