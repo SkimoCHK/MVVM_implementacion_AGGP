@@ -1,4 +1,5 @@
 ﻿using MVVM_implementacion_AGGP.Vistas;
+using MVVM_implementacion_AGGP.Vistas.Pokemon;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,7 @@ namespace MVVM_implementacion_AGGP
         {
             InitializeComponent();
 
-            MainPage = new pagina1();
+            MainPage = new NavigationPage(new Listapokemon());
         }
 
         protected override void OnStart()

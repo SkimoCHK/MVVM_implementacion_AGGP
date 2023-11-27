@@ -1,9 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MVVM_implementacion_AGGP.Vistas.pagina1">
+             x:Class="MVVM_implementacion_AGGP.Vistas.pagina1"
+             NavigationPage.HasNavigationBar="False" >
 
     <Grid BackgroundColor="Orange">
+        <Image Source="https://i.ibb.co/sv8NFSh/flechaxd.png" 
+       VerticalOptions="Start"
+        HeightRequest="50"
+        HorizontalOptions="Start"
+        Margin="10" >
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Volvercommand}" />
+            </Image.GestureRecognizers>
+        </Image>
         <StackLayout VerticalOptions="Center">
             <StackLayout
                 Orientation="Horizontal"
@@ -39,7 +49,7 @@
         VerticalOptions="Center"
         HorizontalOptions="Center"
         
-        Command="{Binding Suymarcommand}"
+        Command="{Binding Sumarcommand}"
                     TextTransform="None"
                     Background="white"
                     CornerRadius="5"
@@ -50,7 +60,42 @@
                    FontAttributes="Bold"
                    FontSize="35"
                    />
+            <Button Text="Ir a página 2"
+                HorizontalOptions="Center"
+                CornerRadius="5"
+                BackgroundColor="White"
+                FontAttributes="Bold"
+                Command="{Binding Navegarpagina2command}" />
+
+            <StackLayout HorizontalOptions="Center"
+                         Orientation="Horizontal">
+                <Label TextColor="White"
+                       FontAttributes="Bold"
+                       Text="Picker: "
+                       VerticalOptions="Center"/>
+                <Picker HorizontalOptions="FillAndExpand"
+                        Title="Seleccione una opción"
+                        SelectedItem="{Binding SeleccionarTipoUsuario}" >
+
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Administrador</x:String>
+                            <x:String>Empleado</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+
+                </Picker>
+            </StackLayout>
+            <StackLayout>
+                <DatePicker HorizontalOptions="Center" Date="{Binding Fecha, Mode=TwoWay}">
+                    <DatePicker.Format>dd/MM/yyyy</DatePicker.Format>
+                </DatePicker>
+                <Label Text="{Binding Resultadofecha}" HorizontalOptions="Center" TextColor="Black" />
+            </StackLayout>
+            
         </StackLayout>
+
+       
     </Grid>
 
 

@@ -1,4 +1,5 @@
-﻿using MvvmGuia.VistaModelo;
+﻿using MVVM_implementacion_AGGP.Vistas;
+using MvvmGuia.VistaModelo;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,14 +16,48 @@ namespace MVVM_implementacion_AGGP.VistaModelo
         string _N2;
         string _R;
         string _Mensaje;
+        string _TipoUsuario;
+        DateTime _Fecha;
+        string _ResultadoFecha;
         #endregion
         #region CONTRUCTOR
         public VMpagina1(INavigation navigation)
         {
             Navigation = navigation;
+            Fecha = DateTime.Now;
         }
         #endregion
         #region OBJETOS
+
+        public DateTime Fecha
+        {
+            get { return _Fecha; }
+            set { SetValue(ref _Fecha, value);
+                Resultadofecha = _Fecha.ToString("dd/MM/yyyy");}
+        }
+        public string Resultadofecha
+        {
+            get { return _ResultadoFecha; }
+            set { SetValue(ref _ResultadoFecha, value);}
+        }
+
+        public string TipoUsuario
+        {
+            get { return _TipoUsuario; }
+            set { SetValue(ref _TipoUsuario, value); }
+            
+
+        }
+
+        public string SeleccionarTipoUsuario
+        {
+            get { return _TipoUsuario; }
+            set { SetProperty(ref _TipoUsuario, value);
+                TipoUsuario = _TipoUsuario;
+            }
+
+
+        }
 
         public string Mensaje
         {
@@ -59,6 +94,21 @@ namespace MVVM_implementacion_AGGP.VistaModelo
 
         }
 
+        public async Task Volver()
+        {
+
+            await Navigation.PopAsync();
+
+        }
+
+        public async Task NavegarPagina2()
+        {
+
+            await Navigation.PushAsync(new Page2());
+
+
+        }
+
         public void Sumar()
         {
             double n1 = 0;
@@ -79,8 +129,10 @@ namespace MVVM_implementacion_AGGP.VistaModelo
         #endregion
 
         #region COMANDOS
-        public ICommand Procesoasynccommand => new Command(async () => await Procesoasync());
-        public ICommand Suymarcommand => new Command(Sumar);
+
+        public ICommand Volvercommand => new Command(async () => await Volver());
+        public ICommand Navegarpagina2command => new Command(async () => await NavegarPagina2());
+        public ICommand Sumarcommand => new Command(Sumar);
         #endregion
     }
 }
